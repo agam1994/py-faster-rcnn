@@ -3,7 +3,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )"
 cd $DIR
 
-FILE=selective_search_data.tgz
+FILE=edge_box_data.tgz
 URL=ftp://ftp.cs.berkeley.edu/pub/projects/vision/$FILE
 CHECKSUM=c341da31579e305292bf5ec08298b87c
 
