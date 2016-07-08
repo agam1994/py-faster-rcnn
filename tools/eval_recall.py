@@ -17,7 +17,7 @@ def parse_args():
                         default='voc_2007_test', type=str)
     parser.add_argument('--method', dest='method',
                         help='proposal method',
-                        default='selective_search', type=str)
+                        default='edge_box', type=str)
     parser.add_argument('--rpn-file', dest='rpn_file',
                         default=None, type=str)
 
