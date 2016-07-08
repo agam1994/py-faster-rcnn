@@ -37,7 +37,7 @@ class pascal_voc(imdb):
         self._image_ext = '.jpg'
         self._image_index = self._load_image_set_index()
         # Default to roidb handler
-        self._roidb_handler = self.selective_search_roidb
+        self._roidb_handler = self.edge_box_roidb
         self._salt = str(uuid.uuid4())
         self._comp_id = 'comp4'
 
@@ -111,15 +111,15 @@ class pascal_voc(imdb):
 
         return gt_roidb
 
-    def selective_search_roidb(self):
+    def edge_box_roidb(self):
         """
-        Return the database of selective search regions of interest.
+        Return the database of edge box regions of interest.
         Ground-truth ROIs are also included.
 
         This function loads/saves from/to a cache file to speed up future calls.
         """
         cache_file = os.path.join(self.cache_path,
-                                  self.name + '_selective_search_roidb.pkl')
+                                  self.name + '_edge_box_roidb.pkl')
 
         if os.path.exists(cache_file):
             with open(cache_file, 'rb') as fid:
@@ -129,10 +129,10 @@ class pascal_voc(imdb):
 
         if int(self._year) == 2007 or self._image_set != 'test':
             gt_roidb = self.gt_roidb()
-            ss_roidb = self._load_selective_search_roidb(gt_roidb)
+            ss_roidb = self._load_edge_box_roidb(gt_roidb)
             roidb = imdb.merge_roidbs(gt_roidb, ss_roidb)
         else:
-            roidb = self._load_selective_search_roidb(None)
+            roidb = self._load_edge_box_roidb(None)
         with open(cache_file, 'wb') as fid:
             cPickle.dump(roidb, fid, cPickle.HIGHEST_PROTOCOL)
         print 'wrote ss roidb to {}'.format(cache_file)
@@ -158,12 +158,12 @@ class pascal_voc(imdb):
             box_list = cPickle.load(f)
         return self.create_roidb_from_box_list(box_list, gt_roidb)
 
-    def _load_selective_search_roidb(self, gt_roidb):
+    def _load_edge_box_roidb(self, gt_roidb):
         filename = os.path.abspath(os.path.join(cfg.DATA_DIR,
-                                                'selective_search_data',
+                                                'edge_box_data',
                                                 self.name + '.mat'))
         assert os.path.exists(filename), \
-               'Selective search data not found at: {}'.format(filename)
+               'edge data not found at: {}'.format(filename)
         raw_data = sio.loadmat(filename)['boxes'].ravel()
 
         box_list = []
