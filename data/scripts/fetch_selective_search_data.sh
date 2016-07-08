@@ -4,8 +4,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )"
 cd $DIR
 
 FILE=selective_search_data.tgz
-URL=http://www.cs.berkeley.edu/~rbg/fast-rcnn-data/$FILE
-CHECKSUM=7078c1db87a7851b31966b96774cd9b9
+URL=ftp://ftp.cs.berkeley.edu/pub/projects/vision/$FILE
+CHECKSUM=c341da31579e305292bf5ec08298b87c
 
 if [ -f $FILE ]; then
   echo "File already exists. Checking md5..."
@@ -23,7 +23,7 @@ if [ -f $FILE ]; then
   fi
 fi
 
-echo "Downloading precomputed selective search boxes (0.5G)..."
+echo "Downloading Edge boxes for COCO train, val, and test-dev set..."
 
 wget $URL -O $FILE
 
