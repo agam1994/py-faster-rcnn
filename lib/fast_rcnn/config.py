@@ -90,6 +90,7 @@ __C.TRAIN.BBOX_NORMALIZE_STDS = (0.1, 0.1, 0.2, 0.2)
 
 # Train using these proposals
 __C.TRAIN.PROPOSAL_METHOD = 'edge_box'
+#_C.TRAIN>PROPASAL_METHOD = 'bing'
 
 # Make minibatches from images that have similar aspect ratios (i.e. both
 # tall and thin or both short and wide) in order to avoid wasting computation
@@ -153,6 +154,7 @@ __C.TEST.HAS_RPN = False
 
 # Test using these proposals
 __C.TEST.PROPOSAL_METHOD = 'edge_box'
+#_C.TRAIN>PROPASAL_METHOD = 'bing'
 
 ## NMS threshold used on RPN proposals
 __C.TEST.RPN_NMS_THRESH = 0.7
