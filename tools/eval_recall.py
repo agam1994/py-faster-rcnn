@@ -18,6 +18,9 @@ def parse_args():
     parser.add_argument('--method', dest='method',
                         help='proposal method',
                         default='edge_box', type=str)
+     parser.add_argument('--method', dest='method',
+                        help='proposal method',
+                        default='bing', type=str)
     parser.add_argument('--rpn-file', dest='rpn_file',
                         default=None, type=str)
 
